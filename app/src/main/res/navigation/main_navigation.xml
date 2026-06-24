@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment"
+    android:id="@+id/main_navigation">
+
+    <include app:graph="@navigation/login_navigation" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ru.compose.tsivileva.effectivemobilecourses.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fr_home">
+
+        <deepLink app:uri="ru.compose.tsivileva.effectivemobilecourses://navigation/home"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="ru.compose.tsivileva.effectivemobilecourses.FavoritesFragment"
+        android:label="fr_favorites"
+        tools:layout="@layout/fr_favorites" />
+
+    <include app:graph="@navigation/profile_navigation"/>
+
+</navigation>
