@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.compose.tsivileva.effectivemobilecourses.HomeFragment"
+        android:name="ru.compose.tsivileva.effectivemobilecourses.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fr_home">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="ru.compose.tsivileva.effectivemobilecourses.FavoritesFragment"
+        android:name="ru.compose.tsivileva.effectivemobilecourses.favorite.FavoritesFragment"
         android:label="fr_favorites"
         tools:layout="@layout/fr_favorites" />
 

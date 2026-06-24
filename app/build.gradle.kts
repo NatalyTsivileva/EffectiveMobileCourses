@@ -38,7 +38,10 @@ android {
 
 dependencies {
     implementation(project(":login"))
+    implementation(project(":home"))
+    implementation(project(":favorite"))
     implementation(project(":profile"))
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

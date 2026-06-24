@@ -26,3 +26,5 @@ rootProject.name = "EffectiveMobileCourses"
 include(":app")
 include(":login")
 include(":profile")
+include(":home")
+include(":favorite")

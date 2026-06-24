@@ -1,4 +1,4 @@
-package ru.compose.tsivileva.effectivemobilecourses
+package ru.compose.tsivileva.effectivemobilecourses.home
 
 import androidx.fragment.app.Fragment
 
