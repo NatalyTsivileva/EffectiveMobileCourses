@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.compose.tsivileva.effectivemobilecourses.favorite"
+    namespace = "ru.compose.tsivileva.effectivemobilecourses.core"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -24,8 +24,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)

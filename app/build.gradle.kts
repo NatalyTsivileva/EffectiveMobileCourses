@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation(project(":login"))
     implementation(project(":home"))
     implementation(project(":favorite"))
