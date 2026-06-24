@@ -59,4 +59,6 @@ dependencies {
     implementation(libs.androidx.navigation.common.ktx)
     implementation("androidx.navigation:navigation-fragment:${nav_version}")
     implementation("androidx.navigation:navigation-ui:${nav_version}")
+
+    implementation(libs.koin.android)
 }
