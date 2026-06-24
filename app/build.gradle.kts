@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":home"))
     implementation(project(":favorite"))
     implementation(project(":profile"))
+    implementation(project(":uikit"))
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
