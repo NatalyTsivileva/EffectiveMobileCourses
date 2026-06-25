@@ -19,7 +19,11 @@ coursesDiffUtils
             binding.image.setImageResource(item.image)
             binding.rating.text = item.rate
             binding.date.text = item.startDate
-            binding.price.text = item.price
+
+            binding.price.text = binding.root.context.getString(
+                ru.compose.tsivileva.effectivemobilecourses.home.R.string.rouble_string,
+                item.price
+            )
 
             val res = if (item.hasLike){
                 ru.compose.tsivileva.effectivemobilecourses.uikit.R.drawable.ic_bookmark_fill
