@@ -2,4 +2,7 @@
 <resources>
     <color name="Green">#12B956</color>
     <color name="White">#F2F2F3</color>
+    <color name="White_70">#B3F2F2F3</color>
+    <color name="DarkGray">#24252A</color>
+    <color name="Glass">#4D32333A</color>
 </resources>
