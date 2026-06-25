@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.compose.tsivileva.effectivemobilecourses.di.appModule
+import ru.compose.tsivileva.effectivemobilecourses.home.di.homeModule
 
 class MainApplication: Application() {
 
@@ -11,7 +12,13 @@ class MainApplication: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MainApplication)
-            modules(appModule)
+
+            modules(
+               listOf(
+                   appModule,
+                   homeModule
+               )
+            )
         }
     }
 }

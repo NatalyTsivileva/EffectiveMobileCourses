@@ -55,10 +55,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 
-    val nav_version = "2.9.8"
     implementation(libs.androidx.navigation.common.ktx)
-    implementation("androidx.navigation:navigation-fragment:${nav_version}")
-    implementation("androidx.navigation:navigation-ui:${nav_version}")
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
 
     implementation(libs.koin.android)
+
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.converter.kotlinx.serialization)
+    implementation(libs.logging.interceptor)
 }
