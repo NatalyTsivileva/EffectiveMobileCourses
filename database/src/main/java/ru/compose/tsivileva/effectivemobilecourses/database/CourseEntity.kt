@@ -2,6 +2,7 @@ package ru.compose.tsivileva.effectivemobilecourses.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity(tableName = "Courses")
 data class CourseEntity(
@@ -12,5 +13,5 @@ data class CourseEntity(
     val price: String,
     val rate: String,
     val startDate: String,
-    val publishDate: String
+    val publishDate: Date
 )

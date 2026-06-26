@@ -11,13 +11,16 @@ class CoursesRepository(
     private val database: CoursesDatabase
 ): ICoursesRepository {
 
-    override suspend fun getCourses(refresh: Boolean): List<Course> = if (refresh){
-        getCoursesFromNetworkAndSaveToDatabase()
+    override suspend fun getCourses(
+        refresh: Boolean,
+        sortByAsc: Boolean
+    ): List<Course> = if (refresh){
+        getCoursesFromNetworkAndSaveToDatabase(sortByAsc)
     }else
-        getCoursesFromDatabase()
+        getCoursesFromDatabase(sortByAsc)
 
 
-    private suspend fun getCoursesFromNetworkAndSaveToDatabase(): List<Course> {
+    private suspend fun getCoursesFromNetworkAndSaveToDatabase(sortByAsc: Boolean): List<Course> {
         val coursesResponse = api.getCourses()
         //save data
         coursesResponse.courses.forEach {
@@ -30,19 +33,32 @@ class CoursesRepository(
         //combine data
         val favoriteCourses = getFavoriteCourses()
 
-        return coursesResponse.courses.map { c->
+        val courseWithFavorite = coursesResponse.courses.map { c->
             CoursesConverter.toCourseData(
                 course = c,
                 hasLike = favoriteCourses.any { it.id == c.id }
             )
         }
+
+        //sort
+        return if (sortByAsc){
+            courseWithFavorite.sortedBy{it.publishDate.time}
+        }else{
+            courseWithFavorite.sortedByDescending { it.publishDate.time }
+        }
     }
 
-    private suspend fun getCoursesFromDatabase(): List<Course> {
+    private suspend fun getCoursesFromDatabase(sortByAsc: Boolean): List<Course> {
         val courses = database.coursesDao().selectAllCourses()
-        return courses.map { c->
+        val list = courses.map { c->
             val fav = database.coursesDao().selectFavoriteCourseById(c.id)
             CoursesConverter.toCourseData(course = c, hasLike = fav!=null)
+        }
+
+        return if (sortByAsc){
+            list.sortedBy{it.publishDate.time}
+        }else{
+            list.sortedByDescending { it.publishDate.time }
         }
     }
 

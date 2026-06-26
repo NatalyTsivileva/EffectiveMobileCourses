@@ -22,6 +22,8 @@ class HomeViewModel(
     val error: StateFlow<String?>
         get() = _error
 
+    private var sortByPublishDayAsc = true
+
     val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
         val msg = throwable.message
         if(!msg.isNullOrEmpty())
@@ -30,7 +32,7 @@ class HomeViewModel(
 
     fun loadCourses(refresh: Boolean){
         viewModelScope.launch(exceptionHandler) {
-            _data.update {  repository.getCourses(refresh) }
+            _data.update {  repository.getCourses(refresh,sortByPublishDayAsc) }
         }
     }
 
@@ -51,4 +53,14 @@ class HomeViewModel(
             repository.removeCourseFromFavorite(course)
         }
     }
+
+    fun setSortByAsc(){
+        sortByPublishDayAsc = true
+    }
+
+    fun setSortByDesc(){
+        sortByPublishDayAsc = false
+    }
+
+    fun isSortByAsc() = sortByPublishDayAsc
 }

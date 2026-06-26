@@ -1,5 +1,8 @@
 package ru.compose.tsivileva.effectivemobilecourses.core.domain
 
+import java.util.Date
+
+
 data class Course(
     val id:Int,
     val title: String,
@@ -9,5 +12,5 @@ data class Course(
     val rate: String,
     val startDate: String,
     val hasLike: Boolean,
-    val publishDate: String
+    val publishDate: Date
 )

@@ -3,7 +3,7 @@ package ru.compose.tsivileva.effectivemobilecourses.core.data
 import ru.compose.tsivileva.effectivemobilecourses.core.domain.Course
 
 interface ICoursesRepository {
-    suspend fun getCourses(refresh: Boolean): List<Course>
+    suspend fun getCourses(refresh: Boolean, sortByAsc: Boolean): List<Course>
 
     suspend fun getFavoriteCourses(): List<Course>
 
