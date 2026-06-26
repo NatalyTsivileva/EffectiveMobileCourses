@@ -11,16 +11,29 @@ class CoursesRepository(
     private val database: CoursesDatabase
 ): ICoursesRepository {
 
-    override suspend fun getCourses(): List<Course> {
-        val list = api.getCourses()
-        return list.courses.map {
-            val fav = database.coursesDao().selectFavoriteCourseById(it.id)
-          /*  if (fav==null && it.hasLike){
-                val entity = CoursesConverter.toCourseEntity(course = it)
-                database.coursesDao().addCourseToFavorite(entity)
+    override suspend fun getCourses(refresh: Boolean): List<Course> = if (refresh){
+        getCoursesFromNetworkAndSaveToDatabase()
+    }else
+        getCoursesFromDatabase()
+
+
+    private suspend fun getCoursesFromNetworkAndSaveToDatabase(): List<Course> {
+        val refreshedCourses = api.getCourses()
+        refreshedCourses.courses.forEach {
+            val e = CoursesConverter.toCourseEntity(it)
+            database.coursesDao().addCourse(e)
+            if (it.hasLike){
+                database.coursesDao().addCourseToFavorite(e)
             }
-*/
-            CoursesConverter.toCourseData(course = it, hasLike = fav!=null)
+        }
+        return CoursesConverter.toCoursesData(refreshedCourses)
+    }
+
+    private suspend fun getCoursesFromDatabase(): List<Course> {
+        val courses = database.coursesDao().selectAllCourses()
+        return courses.map { c->
+            val fav = database.coursesDao().selectFavoriteCourseById(c.id)
+            CoursesConverter.toCourseData(course = c, hasLike = fav!=null)
         }
     }
 
@@ -33,4 +46,6 @@ class CoursesRepository(
         val entity = CoursesConverter.toCourseEntity(course)
         database.coursesDao().deleteCourseFromFavorite(entity)
     }
+
+
 }

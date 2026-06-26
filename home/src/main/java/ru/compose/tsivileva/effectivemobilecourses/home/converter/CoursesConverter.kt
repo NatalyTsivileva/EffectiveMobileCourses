@@ -8,8 +8,7 @@ import ru.compose.tsivileva.effectivemobilecourses.uikit.R
 
 object CoursesConverter {
 
-    fun toCourseData(course: CoursesResponse.Course, hasLike:Boolean):Course{
-        val isFavorite = course.hasLike || hasLike
+    fun toCourseData(course: CoursesResponse.Course):Course{
         return Course(
             id = course.id,
             title = course.title,
@@ -18,7 +17,21 @@ object CoursesConverter {
             price = course.price,
             rate = course.rate,
             startDate = course.startDate,
-            hasLike = isFavorite,
+            hasLike = course.hasLike,
+            publishDate = course.publishDate
+        )
+    }
+
+    fun toCourseData(course: CourseEntity, hasLike:Boolean):Course{
+        return Course(
+            id = course.id,
+            title = course.title,
+            image = getImageForCourse(course.title),
+            text = course.text,
+            price = course.price,
+            rate = course.rate,
+            startDate = course.startDate,
+            hasLike = hasLike,
             publishDate = course.publishDate
         )
     }

@@ -30,26 +30,26 @@ class HomeViewModel(
     }
 
     init {
-        loadData()
+        loadData(refresh = true)
     }
 
-    fun loadData(){
+    fun loadData(refresh: Boolean){
         viewModelScope.launch(exceptionHandler) {
-            _data.update {  repository.getCourses() }
+            _data.update {  repository.getCourses(refresh) }
         }
     }
 
     fun addCourseToFavorite(course: Course){
        viewModelScope.launch(exceptionHandler) {
            repository.addCourseToFavorite(course)
-           loadData()
+           loadData(refresh = false)
        }
     }
 
     fun removeCourseFromFavorite(course: Course){
         viewModelScope.launch(exceptionHandler) {
             repository.removeCourseFromFavorite(course)
-            loadData()
+            loadData(refresh = false)
         }
     }
 }

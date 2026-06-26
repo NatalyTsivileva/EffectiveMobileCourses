@@ -36,6 +36,9 @@ interface CoursesDao {
         }
     }
 
+    @Query("SELECT * FROM Courses")
+    suspend fun selectAllCourses(): List<CourseEntity>
+
     @Transaction
     @Query("SELECT * FROM Favorite")
     suspend fun selectFavoriteCourses(): List<FavoriteCourseEntity>
