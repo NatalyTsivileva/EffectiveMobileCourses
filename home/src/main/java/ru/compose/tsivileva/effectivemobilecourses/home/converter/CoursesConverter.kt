@@ -8,7 +8,7 @@ import ru.compose.tsivileva.effectivemobilecourses.uikit.R
 
 object CoursesConverter {
 
-    fun toCourseData(course: CoursesResponse.Course):Course{
+    fun toCourseData(course: CoursesResponse.Course, hasLike: Boolean):Course{
         return Course(
             id = course.id,
             title = course.title,
@@ -17,7 +17,7 @@ object CoursesConverter {
             price = course.price,
             rate = course.rate,
             startDate = course.startDate,
-            hasLike = course.hasLike,
+            hasLike = course.hasLike || hasLike,
             publishDate = course.publishDate
         )
     }

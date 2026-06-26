@@ -1,8 +1,22 @@
 package ru.compose.tsivileva.effectivemobilecourses.favorite
 
-import ru.compose.tsivileva.effectivemobilecourses.core.presentation.BaseFragment
+import androidx.recyclerview.widget.RecyclerView
 import ru.compose.tsivileva.effectivemobilecourses.favorite.databinding.FrFavoritesBinding
+import ru.compose.tsivileva.effectivemobilecourses.home.presentation.BaseCoursesFragment
 
-class FavoritesFragment : BaseFragment<FrFavoritesBinding>(FrFavoritesBinding::inflate) {
+class FavoritesFragment : BaseCoursesFragment<FrFavoritesBinding>(FrFavoritesBinding::inflate) {
+
+    override fun loadFromNetwork() {
+        loadFromCache()
+    }
+
+    override fun loadFromCache() {
+        viewModel.loadFavoritesCourses()
+    }
+
+    override fun getListFromUi(): RecyclerView {
+       return binding.list
+    }
+
 
 }

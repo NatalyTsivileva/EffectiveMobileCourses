@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.compose.tsivileva.effectivemobilecourses.core.data.ICoursesRepository
@@ -29,27 +28,27 @@ class HomeViewModel(
             _error.update { msg }
     }
 
-    init {
-        loadData(refresh = true)
-    }
-
-    fun loadData(refresh: Boolean){
+    fun loadCourses(refresh: Boolean){
         viewModelScope.launch(exceptionHandler) {
             _data.update {  repository.getCourses(refresh) }
+        }
+    }
+
+    fun loadFavoritesCourses(){
+        viewModelScope.launch(exceptionHandler) {
+            _data.update {  repository.getFavoriteCourses() }
         }
     }
 
     fun addCourseToFavorite(course: Course){
        viewModelScope.launch(exceptionHandler) {
            repository.addCourseToFavorite(course)
-           loadData(refresh = false)
        }
     }
 
     fun removeCourseFromFavorite(course: Course){
         viewModelScope.launch(exceptionHandler) {
             repository.removeCourseFromFavorite(course)
-            loadData(refresh = false)
         }
     }
 }

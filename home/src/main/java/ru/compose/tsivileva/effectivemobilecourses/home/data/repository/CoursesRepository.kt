@@ -18,15 +18,24 @@ class CoursesRepository(
 
 
     private suspend fun getCoursesFromNetworkAndSaveToDatabase(): List<Course> {
-        val refreshedCourses = api.getCourses()
-        refreshedCourses.courses.forEach {
+        val coursesResponse = api.getCourses()
+        //save data
+        coursesResponse.courses.forEach {
             val e = CoursesConverter.toCourseEntity(it)
             database.coursesDao().addCourse(e)
             if (it.hasLike){
                 database.coursesDao().addCourseToFavorite(e)
             }
         }
-        return CoursesConverter.toCoursesData(refreshedCourses)
+        //combine data
+        val favoriteCourses = getFavoriteCourses()
+
+        return coursesResponse.courses.map { c->
+            CoursesConverter.toCourseData(
+                course = c,
+                hasLike = favoriteCourses.any { it.id == c.id }
+            )
+        }
     }
 
     private suspend fun getCoursesFromDatabase(): List<Course> {
@@ -34,6 +43,12 @@ class CoursesRepository(
         return courses.map { c->
             val fav = database.coursesDao().selectFavoriteCourseById(c.id)
             CoursesConverter.toCourseData(course = c, hasLike = fav!=null)
+        }
+    }
+
+    override suspend fun getFavoriteCourses(): List<Course> {
+        return database.coursesDao().selectFavoriteCourses().map {
+            CoursesConverter.toCourseData(it.course,true)
         }
     }
 
