@@ -1,7 +1,9 @@
 package ru.compose.tsivileva.effectivemobilecourses.profile
 
-import androidx.fragment.app.Fragment
+import ru.compose.tsivileva.effectivemobilecourses.core.presentation.BaseFragment
+import ru.compose.tsivileva.effectivemobilecourses.profile.databinding.FrProfileBinding
 
-class ProfileFragment : Fragment(R.layout.fr_profile) {
+class ProfileFragment : BaseFragment<FrProfileBinding>(FrProfileBinding::inflate) {
+
 
 }

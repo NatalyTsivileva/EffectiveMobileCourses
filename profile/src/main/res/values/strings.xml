@@ -1,4 +1,8 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_title">Профиль</string>
+    <string name="profile_support_chatting">Написать в поддержку</string>
+    <string name="profile_setting">Настройки</string>
+    <string name="profile_logout">Выйти из аккаунта</string>
 </resources>
