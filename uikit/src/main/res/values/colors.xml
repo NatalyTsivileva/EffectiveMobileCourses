@@ -5,4 +5,7 @@
     <color name="White_70">#B3F2F2F3</color>
     <color name="DarkGray">#24252A</color>
     <color name="Glass">#4D32333A</color>
+    <color name="Stroke">#4D555E</color>
+    <color name="Blue">#2683ED</color>
+    <color name="Orange">#F98509</color>
 </resources>

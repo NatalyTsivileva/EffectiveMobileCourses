@@ -1,16 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_tertiary30"
     tools:context=".LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/loginBtn"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/loginTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/roboto_font"
+        android:text="@string/login_title"
+        android:textColor="@color/White"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/emailTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN" />
+        android:fontFamily="@font/roboto_font"
+        android:text="@string/login_email_title"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/emailEditText"
+        app:layout_constraintStart_toStartOf="@id/loginTitle"
+        app:layout_constraintTop_toBottomOf="@id/loginTitle" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/emailEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_rectangle_rounded_dark_gray"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@. "
+        android:hint="@string/login_email_hint"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/passwordTitle"
+        app:layout_constraintEnd_toEndOf="@id/loginTitle"
+        app:layout_constraintStart_toStartOf="@id/emailTitle"
+        app:layout_constraintTop_toBottomOf="@id/emailTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/passwordTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_font"
+        android:text="@string/login_password_title"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/passwordEditText"
+        app:layout_constraintStart_toStartOf="@id/loginTitle"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_rectangle_rounded_dark_gray"
+        android:hint="@string/login_password_hint"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/loginBtn"
+        app:layout_constraintEnd_toEndOf="@id/emailEditText"
+        app:layout_constraintStart_toStartOf="@id/loginTitle"
+        app:layout_constraintTop_toBottomOf="@id/passwordTitle" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_rectangle_rounded_dark_gray"
+        android:backgroundTint="@color/Green"
+        android:enabled="false"
+        android:text="@string/login_title"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/signupHint"
+        app:layout_constraintEnd_toEndOf="@id/passwordEditText"
+        app:layout_constraintStart_toStartOf="@id/passwordEditText"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signupHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_font"
+        android:text="@string/login_sign_up_hint"
+        android:textColor="@color/White"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/forgetPasswordBtn"
+        app:layout_constraintEnd_toStartOf="@id/signupBtn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signupBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto_font"
+        android:text="@string/login_signup_button"
+        android:textColor="@color/Green"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/loginBtn"
+        app:layout_constraintStart_toEndOf="@id/signupHint"
+        app:layout_constraintTop_toTopOf="@id/signupHint" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forgetPasswordBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_font"
+        android:gravity="center"
+        android:text="@string/login_forget_password_btn"
+        android:textColor="@color/Green"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintEnd_toEndOf="@id/signupBtn"
+        app:layout_constraintStart_toStartOf="@id/signupHint"
+        app:layout_constraintTop_toBottomOf="@id/signupHint" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/Stroke"
+        app:layout_constraintBottom_toTopOf="@id/vkLoginBtn"
+        app:layout_constraintEnd_toEndOf="@id/loginBtn"
+        app:layout_constraintStart_toStartOf="@id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@id/forgetPasswordBtn" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vkLoginBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_rectangle_rounded_dark_gray"
+        android:backgroundTint="@color/Blue"
+        android:src="@drawable/ic_vk_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/odnoklassnikiLoginBtn"
+        app:layout_constraintStart_toStartOf="@id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/odnoklassnikiLoginBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_rectangle_rounded_dark_gray"
+        android:backgroundTint="@color/Orange"
+        android:src="@drawable/ic_odnoklassniki_logo"
+        app:layout_constraintBottom_toBottomOf="@id/vkLoginBtn"
+        app:layout_constraintEnd_toEndOf="@id/loginBtn"
+        app:layout_constraintStart_toEndOf="@id/vkLoginBtn"
+        app:layout_constraintTop_toTopOf="@id/vkLoginBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,9 +22,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
+    implementation(project(":uikit"))
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

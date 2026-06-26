@@ -1,4 +1,12 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_title">Вход</string>
+    <string name="login_email_hint">example@gmail.com</string>
+    <string name="login_password_title">Пароль</string>
+    <string name="login_password_hint">Введите пароль</string>
+    <string name="login_email_title">Email</string>
+    <string name="login_sign_up_hint">Нет аккаунта?</string>
+    <string name="login_signup_button">Регистрация</string>
+    <string name="login_forget_password_btn">Забыли пароль</string>
 </resources>
