@@ -12,27 +12,10 @@ import androidx.core.net.toUri
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import ru.compose.tsivileva.effectivemobilecourses.core.presentation.BaseFragment
 import ru.compose.tsivileva.effectivemobilecourses.login.databinding.FrLoginBinding
 
-class LoginFragment : Fragment(R.layout.fr_login) {
-
-    private var _binding: FrLoginBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FrLoginBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+class LoginFragment : BaseFragment<FrLoginBinding>(FrLoginBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

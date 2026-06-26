@@ -1,8 +1,8 @@
 package ru.compose.tsivileva.effectivemobilecourses.favorite
 
-import androidx.fragment.app.Fragment
+import ru.compose.tsivileva.effectivemobilecourses.core.presentation.BaseFragment
+import ru.compose.tsivileva.effectivemobilecourses.favorite.databinding.FrFavoritesBinding
 
-class FavoritesFragment : Fragment(R.layout.fr_favorites) {
-
+class FavoritesFragment : BaseFragment<FrFavoritesBinding>(FrFavoritesBinding::inflate) {
 
 }

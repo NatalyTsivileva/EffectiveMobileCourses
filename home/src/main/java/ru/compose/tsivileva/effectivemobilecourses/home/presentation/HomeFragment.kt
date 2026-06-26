@@ -14,34 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.compose.tsivileva.effectivemobilecourses.core.domain.Course
+import ru.compose.tsivileva.effectivemobilecourses.core.presentation.BaseFragment
 import ru.compose.tsivileva.effectivemobilecourses.home.R
 import ru.compose.tsivileva.effectivemobilecourses.home.databinding.FrHomeBinding
 import ru.compose.tsivileva.effectivemobilecourses.home.presentation.adapter.CoursesRecyclerAdapter
 import ru.compose.tsivileva.effectivemobilecourses.home.presentation.adapter.OnItemClick
 
-class HomeFragment : Fragment(R.layout.fr_home) {
+class HomeFragment : BaseFragment<FrHomeBinding>(FrHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModel()
-
     private var adapter: CoursesRecyclerAdapter? = null
-
-    private var _binding: FrHomeBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FrHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
