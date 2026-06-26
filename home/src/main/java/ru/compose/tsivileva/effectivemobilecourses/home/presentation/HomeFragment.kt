@@ -13,9 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.compose.tsivileva.effectivemobilecourses.core.domain.Course
 import ru.compose.tsivileva.effectivemobilecourses.home.R
 import ru.compose.tsivileva.effectivemobilecourses.home.databinding.FrHomeBinding
 import ru.compose.tsivileva.effectivemobilecourses.home.presentation.adapter.CoursesRecyclerAdapter
+import ru.compose.tsivileva.effectivemobilecourses.home.presentation.adapter.OnItemClick
 
 class HomeFragment : Fragment(R.layout.fr_home) {
 
@@ -49,7 +51,16 @@ class HomeFragment : Fragment(R.layout.fr_home) {
     }
 
     private fun setupRecycler(){
-        adapter = CoursesRecyclerAdapter()
+        adapter = CoursesRecyclerAdapter(object : OnItemClick{
+            override fun onFavoriteClick(course: Course) {
+                if (course.hasLike) {
+                    viewModel.removeCourseFromFavorite(course)
+                }else{
+                    viewModel.addCourseToFavorite(course)
+                }
+            }
+        })
+
         binding.list.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.VERTICAL,

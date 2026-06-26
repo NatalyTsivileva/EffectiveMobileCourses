@@ -3,32 +3,33 @@ package ru.compose.tsivileva.effectivemobilecourses.database
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 
 @Dao
 interface CoursesDao {
-    @Insert
-    fun addCourse(course: CourseEntity)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addCourse(course: CourseEntity)
 
-    @Insert
-    fun addFavorite(favoriteEntity: FavoriteEntity)
-
-    @Delete
-    fun deleteCourse(course: CourseEntity)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addFavorite(favoriteEntity: FavoriteEntity)
 
     @Delete
-    fun deleteFavorite(favoriteEntity: FavoriteEntity)
+    suspend fun deleteCourse(course: CourseEntity)
+
+    @Delete
+    suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
 
     @Transaction
-    fun addCourseToFavorite(course: CourseEntity){
+    suspend fun addCourseToFavorite(course: CourseEntity){
         addCourse(course)
         val favoriteEntity = FavoriteEntity(cid = course.id)
         addFavorite(favoriteEntity)
     }
 
     @Transaction
-    fun deleteCourseFromFavorite(course: CourseEntity){
+    suspend fun deleteCourseFromFavorite(course: CourseEntity){
         val favoriteCourse = selectFavoriteCourseById(course.id)
         if(favoriteCourse!=null){
             deleteFavorite(favoriteCourse)
@@ -37,8 +38,8 @@ interface CoursesDao {
 
     @Transaction
     @Query("SELECT * FROM Favorite")
-    fun selectFavoriteCourses(): List<FavoriteCourseEntity>
+    suspend fun selectFavoriteCourses(): List<FavoriteCourseEntity>
 
     @Query("SELECT * FROM Favorite WHERE cid=:cousreId")
-    fun selectFavoriteCourseById(cousreId:Int): FavoriteEntity?
+    suspend fun selectFavoriteCourseById(cousreId:Int): FavoriteEntity?
 }

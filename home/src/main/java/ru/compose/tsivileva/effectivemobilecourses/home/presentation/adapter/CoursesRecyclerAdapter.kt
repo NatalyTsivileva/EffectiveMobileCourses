@@ -9,10 +9,15 @@ import ru.compose.tsivileva.effectivemobilecourses.core.R
 import ru.compose.tsivileva.effectivemobilecourses.core.domain.Course
 import ru.compose.tsivileva.effectivemobilecourses.uikit.databinding.ItemCourseBinding
 
-class CoursesRecyclerAdapter: ListAdapter<Course, CoursesRecyclerAdapter.CoursesViewHolder>(
+class CoursesRecyclerAdapter(
+    private val listener: OnItemClick
+): ListAdapter<Course, CoursesRecyclerAdapter.CoursesViewHolder>(
 coursesDiffUtils
 ) {
-    class CoursesViewHolder(val binding: ItemCourseBinding): RecyclerView.ViewHolder(binding.root){
+    class CoursesViewHolder(
+        val binding: ItemCourseBinding,
+        val listener: OnItemClick
+    ): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Course){
             binding.title.text = item.title
             binding.text.text = item.text
@@ -31,13 +36,16 @@ coursesDiffUtils
                 ru.compose.tsivileva.effectivemobilecourses.uikit.R.drawable.ic_bookmark
             }
             binding.favorite.setImageResource(res)
+            binding.favorite.setOnClickListener {
+                listener.onFavoriteClick(item)
+            }
         }
     }
 
     override fun onCreateViewHolder(group: ViewGroup, viewType: Int): CoursesViewHolder {
         val inflater = LayoutInflater.from(group.context)
         val binding = ItemCourseBinding.inflate(inflater, group, false)
-        return CoursesViewHolder(binding)
+        return CoursesViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: CoursesViewHolder, position: Int) {

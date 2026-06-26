@@ -15,7 +15,7 @@ val homeModule = module {
         retrofit.create(CoursesNetworkApi::class.java)
     }
 
-    single<ICoursesRepository>{ CoursesRepository(api = get()) }
+    single<ICoursesRepository>{ CoursesRepository(api = get(), database = get()) }
 
     viewModel { HomeViewModel(repository = get()) }
 }

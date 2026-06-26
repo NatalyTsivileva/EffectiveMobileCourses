@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     kotlin("plugin.serialization") version "2.0.21"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -30,6 +31,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":uikit"))
+    implementation(project(":database"))
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
@@ -42,6 +44,9 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
-    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:3.0.0")
+    implementation(libs.converter.kotlinx.serialization)
 
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }

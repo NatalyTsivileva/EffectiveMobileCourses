@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":favorite"))
     implementation(project(":profile"))
     implementation(project(":uikit"))
+    implementation(project(":database"))
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)

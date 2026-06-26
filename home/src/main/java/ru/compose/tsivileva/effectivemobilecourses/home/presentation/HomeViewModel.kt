@@ -38,4 +38,18 @@ class HomeViewModel(
             _data.update {  repository.getCourses() }
         }
     }
+
+    fun addCourseToFavorite(course: Course){
+       viewModelScope.launch(exceptionHandler) {
+           repository.addCourseToFavorite(course)
+           loadData()
+       }
+    }
+
+    fun removeCourseFromFavorite(course: Course){
+        viewModelScope.launch(exceptionHandler) {
+            repository.removeCourseFromFavorite(course)
+            loadData()
+        }
+    }
 }
