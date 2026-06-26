@@ -61,7 +61,8 @@ class LoginFragment : Fragment(R.layout.fr_login) {
     }
 
     private fun isValidEmail(text: String): Boolean {
-        return text.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(text).matches()
+        val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
+        return emailRegex.matches(text) && text.isNotEmpty()
     }
 
     private fun isValidPassword(text: String) = text.isNotEmpty()
